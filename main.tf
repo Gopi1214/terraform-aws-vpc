@@ -28,6 +28,7 @@ resource "aws_subnet" "public" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.public_subnets_cidr[count.index]
   availability_zone = local.az_names[count.index]
+  map_public_ip_on_launch = true
 
    tags = merge(
      var.commn_tags, 
@@ -69,6 +70,15 @@ resource "aws_subnet" "database" {
           }
    )
 
+}
+
+resource "aws_db_subnet_group" "default" {
+  name       = local.name
+  subnet_ids = [aws_subnet.database[*].id]
+
+  tags = {
+    Name = local.name
+  }
 }
 
 resource "aws_eip" "elastic_ip" {
