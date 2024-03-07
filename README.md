@@ -14,7 +14,9 @@ NOTE: For High Availability(HA), I have used 2 AZ-(us-east-1a, us-east-1b).
 * Created route tables for public, private, database 
 * Created routes for public with igw, private and database with NAT gateway
 * Subnets and route tables association
-* VPC peering and routes
+* VPC peering if user requests
+* Adding the peering route in default VPC, if user don't provide acceptor VPC explicitly.
+* Adding the peering routes in public, private and database route tables
 
 ### OUTPUTS
 
